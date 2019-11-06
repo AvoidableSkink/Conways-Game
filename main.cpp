@@ -1,6 +1,5 @@
 ﻿// Conways Game.cpp : Defines the entry point for the application.
 //
-#include <Windows.h>
 #include <thread>
 
 #include "LifeSimulator.hpp"
@@ -11,8 +10,17 @@
 #include "PatternBlock.hpp"
 #include "PatternGlider.hpp"
 
+//sorry i dont know if this is ok or not
+#if defined(_MSC_VER)
+#include <Windows.h>
+#elif defined(__GNUC__) || defined(__GNUG__)
+#include <sys/ioctl.h>
+#endif
+
+
 int main()
 {
+#if defined(_MSC_VER)
 	//get the size of the console
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
 	std::uint8_t columns, rows;
@@ -20,6 +28,13 @@ int main()
 	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
 	columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
 	rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+#elif defined(__GNUC__) || defined(__GNUG__)
+	std::uint8_t columns, rows;
+	struct winsize size;
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &size);
+	rows = size.ws_row;
+	columns = size.ws_col;
+#endif
 
 	//create a life simulator
 	LifeSimulator myWorld(columns, rows);
