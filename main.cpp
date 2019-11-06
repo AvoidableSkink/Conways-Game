@@ -1,6 +1,7 @@
 ﻿// Conways Game.cpp : Defines the entry point for the application.
 //
 #include <Windows.h>
+#include <thread>
 
 #include "LifeSimulator.hpp"
 #include "RendererConsole.hpp"
@@ -19,11 +20,17 @@ int main()
 	//create a life simulator
 	LifeSimulator myWorld(columns, rows);
 	PatternAcorn acorn;
-	myWorld.insertPattern(acorn, 0, 0);
+	myWorld.insertPattern(acorn, 20, 20);
 
-	//render the simulator
-	RendererConsole console;
-	console.render(myWorld);
+	bool keepGoing = true;
+	while (keepGoing)
+	{
+		//render the simulator
+		RendererConsole console;
+		console.render(myWorld);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		myWorld.update();
+	}
 
 	return 0;
 }

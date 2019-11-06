@@ -19,6 +19,9 @@ private:
 	std::vector<std::vector<cell>> currentState;
 	std::vector<std::vector<cell>> newState;
 
+	std::uint8_t liveNeighborCount(std::uint8_t x, std::uint8_t y);
+
+
 public:
 	//The constructor accepts a sizeXand sizeY indicating the size of the world.
 	//You'll want to set these equal to the width/height of the console the program runs within.

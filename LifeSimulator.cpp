@@ -18,6 +18,7 @@ LifeSimulator::LifeSimulator(std::uint8_t sX, std::uint8_t sY) {
 			currentState[i].push_back(tmp);
 		}
 	}
+	newState = currentState;
 }
 
 //insertPattern - Adds the pattern to the world, with the upper left corner beginning at startXand startY.
@@ -39,9 +40,72 @@ void LifeSimulator::insertPattern(const Pattern& pattern, std::uint8_t startX, s
 //update - Performs a single step update of the world, following the four rules specified in the wiki article.
 //for each cell, check its neighbors states and see if you live or die
 void LifeSimulator::update() {
-
+	//for each cell check the neighbors for these
+	//Any live cell with fewer than two live neighbours dies, as if by underpopulation.
+	//Any live cell with two or three live neighbours lives on to the next generation.
+	//Any live cell with more than three live neighbours dies, as if by overpopulation.
+	//Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+	for (size_t y = 0; y < sizeY; y++)
+	{
+		for (size_t x = 0; x < sizeX; x++)
+		{
+			std::uint8_t livingCount = liveNeighborCount(x, y);
+			if (currentState[y][x].alive == true) {
+				//check the true stuff
+				switch (livingCount)
+				{
+				case 2: 
+					newState[y][x].alive = true;
+					break;
+				case 3:
+					newState[y][x].alive = true;
+					break;
+				default:
+					newState[y][x].alive = false;
+					break;
+				}
+			}
+			else {
+				switch (livingCount)
+				{
+				case 3:
+					newState[y][x].alive = true;
+					break;
+				default:
+					newState[y][x].alive = false;
+					break;
+				}
+			}
+		}
+	}
+	currentState = newState;
 }
 
+//takes in the x,y of a cell, counts up how many live neighbors it has
+//if a cell doesnt have all 8 neighbors the missing ones are just counted as dead
+std::uint8_t LifeSimulator::liveNeighborCount(std::uint8_t x, std::uint8_t y) {
+	std::uint8_t count = 0;
+	//lets just brute force this?
+	//TODO: check that none of these are out of bounds ... also too big 
+	if (((y - 1) >= 0 && (x - 1) >= 0) && currentState[y - 1][x - 1].alive)
+		count++;
+	if ((y - 1) >= 0 && currentState[y - 1][x].alive)
+		count++;
+	if (((y - 1) >= 0 && (x + 1) < sizeX) && currentState[y - 1][x + 1].alive)
+		count++;
+	if (((x - 1) >= 0) && currentState[y][x - 1].alive)
+		count++;
+	if (((x + 1) < sizeX) && currentState[y][x + 1].alive)
+		count++;
+	if (((y + 1) < sizeY && (x - 1) >= 0) && currentState[y + 1][x - 1].alive)
+		count++;
+	if ((y + 1) < sizeY && currentState[y + 1][x].alive)
+		count++;
+	if (((y + 1) < sizeY && (x + 1) < sizeX) && currentState[y + 1][x + 1].alive)
+		count++;
+
+	return count;
+}
 
 //getCell - Returns true if the currentWorld cell is alive, false otherwise.
 //this data used to update newState

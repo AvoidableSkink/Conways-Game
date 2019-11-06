@@ -3,7 +3,7 @@
 
 void RendererConsole::render(const LifeSimulator& simulation) {
 	rlutil::cls();
-	//rlutil::hidecursor();
+	rlutil::hidecursor();
 
 	//render me
 	for (size_t y = 0; y < simulation.getSizeY(); y++)
@@ -21,7 +21,6 @@ void RendererConsole::render(const LifeSimulator& simulation) {
 			}
 		}
 	}
-	while (true){}
-
-	//rlutil::showcursor();
+	
+	rlutil::showcursor();
 }
