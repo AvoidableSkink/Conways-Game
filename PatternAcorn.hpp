@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Pattern.hpp"
 
 class PatternAcorn : public Pattern {
@@ -11,12 +12,12 @@ public:
 	PatternAcorn();
 
 	//Returns the horizontal width(in cells) of the pattern.
-	std::uint8_t getSizeX() const { return sizeX; };
+	std::uint8_t getSizeX() const;
 
 	//Returns the vertical height(in cells) of the pattern.
-	std::uint8_t getSizeY() const { return sizeY; };
+	std::uint8_t getSizeY() const;
 
 	//Returns true if the cell in the pattern is filled, false otherwise.
-	bool getCell(std::uint8_t x, std::uint8_t y);
+	bool getCell(std::uint8_t x, std::uint8_t y) const;
 
 };

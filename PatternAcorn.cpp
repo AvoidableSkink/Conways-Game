@@ -4,19 +4,26 @@ PatternAcorn::PatternAcorn() {
 	sizeX = 9;
 	sizeY = 5;
 	//fill up your pattern with non-active, dead cells
-	for (size_t i = 0; i < sizeY; i++)
+	for (size_t y = 0; y < sizeY; y++)
 	{
-		for (size_t j = 0; j < sizeX; j++)
+		std::vector<cell> tmp;
+		myPattern.push_back(tmp);
+		for (size_t x = 0; x < sizeX; x++)
 		{
 			cell tmp;
 			tmp.alive = false;
-			myPattern[i].push_back(tmp);
+			myPattern[y].push_back(tmp);
 		}
 	}
+	populatePattern();
 }
 
+//getters
+std::uint8_t PatternAcorn::getSizeX() const { return sizeX; };
+std::uint8_t PatternAcorn::getSizeY() const { return sizeY; };
+
 //Returns true if the cell in the pattern is filled, false otherwise.
-bool PatternAcorn::getCell(std::uint8_t x, std::uint8_t y) {
+bool PatternAcorn::getCell(std::uint8_t x, std::uint8_t y) const {
 	if (myPattern[y][x].alive == true) {
 		return true;
 	}

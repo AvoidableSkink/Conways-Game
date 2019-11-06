@@ -5,11 +5,13 @@ cmake_minimum_required (VERSION 3.8)
 
 set(HEADER_FILES
 	rlutil.h
-    LifeSimulator.hpp Renderer.hpp 
+    LifeSimulator.hpp 
+	Renderer.hpp RendererConsole.hpp 
 	Pattern.hpp PatternAcorn.hpp)
 
 set(SOURCE_FILES
-    LifeSimulator.cpp PatternAcorn.cpp)
+    LifeSimulator.cpp PatternAcorn.cpp
+	RendererConsole.cpp)
 
 # Add source to this project's executable.
 add_executable (ConwaysLife  "main.cpp" ${HEADER_FILES} ${SOURCE_FILES})

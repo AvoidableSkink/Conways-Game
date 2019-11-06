@@ -3,13 +3,14 @@
 
 //The constructor accepts a sizeXand sizeY indicating the size of the world.
 //You'll want to set these equal to the width/height of the console the program runs within.
-//TODO: if you are getting weird results maybe need to swap x and y we have y as the vector of vectors
-LifeSimulator::LifeSimulator(std::uint8_t sizeX, std::uint8_t sizeY) {
-	sizeX = sizeX+3;
-	sizeY = sizeY+3;
+LifeSimulator::LifeSimulator(std::uint8_t sX, std::uint8_t sY) {
+	sizeX = sX+3;
+	sizeY = sY+3;
 	//fill up your world with dead cells
 	for (size_t i = 0; i < sizeY; i++)
 	{
+		std::vector<cell> tmp;
+		currentState.push_back(tmp);
 		for (size_t j = 0; j < sizeX; j++)
 		{
 			cell tmp;
@@ -21,16 +22,16 @@ LifeSimulator::LifeSimulator(std::uint8_t sizeX, std::uint8_t sizeY) {
 
 //insertPattern - Adds the pattern to the world, with the upper left corner beginning at startXand startY.
 void LifeSimulator::insertPattern(const Pattern& pattern, std::uint8_t startX, std::uint8_t startY) {
-	for (size_t i = 0; i < pattern.getSizeY(); i++)
+	for (size_t y = 0; y < pattern.getSizeY(); y++)
 	{
-		for (size_t j = 0; j < pattern.getSizeY(); j++)
+		for (size_t x = 0; x < pattern.getSizeX(); x++)
 		{
 			//check that the cell is in range of the world
-			if (i + startY >= sizeY || j + startX >= sizeX) {
+			if (y + startY >= sizeY || x + startX >= sizeX) {
 				continue;
 			}
 			//if in bounds update state of cell to be same as corresponding pattern cell
-			currentState[i + startY][j + startX].alive = pattern.getCell(i, j);
+			currentState[y + startY][x + startX].alive = pattern.getCell(x, y);
 		}
 	}
 }
