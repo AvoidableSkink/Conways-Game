@@ -7,10 +7,18 @@ set(HEADER_FILES
 	rlutil.h
     LifeSimulator.hpp 
 	Renderer.hpp RendererConsole.hpp 
-	Pattern.hpp PatternAcorn.hpp)
+	Pattern.hpp PatternAcorn.hpp
+	PatternBlinker.hpp
+	PatternBlock.hpp
+	PatternGlider.hpp
+	PatternGosperGliderGun.hpp)
 
 set(SOURCE_FILES
     LifeSimulator.cpp PatternAcorn.cpp
+	PatternBlinker.cpp
+	PatternBlock.cpp
+	PatternGlider.cpp
+	PatternGosperGliderGun.cpp
 	RendererConsole.cpp)
 
 # Add source to this project's executable.

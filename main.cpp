@@ -6,6 +6,10 @@
 #include "LifeSimulator.hpp"
 #include "RendererConsole.hpp"
 #include "PatternAcorn.hpp"
+#include "PatternGosperGliderGun.hpp"
+#include "PatternBlinker.hpp"
+#include "PatternBlock.hpp"
+#include "PatternGlider.hpp"
 
 int main()
 {
@@ -19,16 +23,24 @@ int main()
 
 	//create a life simulator
 	LifeSimulator myWorld(columns, rows);
-	PatternAcorn acorn;
-	myWorld.insertPattern(acorn, 20, 20);
+	PatternGosperGliderGun gun;
+	myWorld.insertPattern(gun, 1, 1);
+	PatternBlinker blinker;
+	myWorld.insertPattern(blinker, 40, 5);
+	myWorld.insertPattern(blinker, 48, 3);
+	myWorld.insertPattern(blinker, 48, 10);
+	myWorld.insertPattern(blinker, 55, 5);
+	myWorld.insertPattern(blinker, 57, 15);
+	myWorld.insertPattern(blinker, 50, 9);
+	PatternBlock block;
+	myWorld.insertPattern(block, 46, 3);
 
 	bool keepGoing = true;
-	while (keepGoing)
-	{
+	while (keepGoing) {
 		//render the simulator
 		RendererConsole console;
 		console.render(myWorld);
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		std::this_thread::sleep_for(std::chrono::milliseconds(10));
 		myWorld.update();
 	}
 

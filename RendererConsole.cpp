@@ -14,7 +14,7 @@ void RendererConsole::render(const LifeSimulator& simulation) {
 			{
 				//move cursor and render char
 				rlutil::locate(x, y);
-				rlutil::setChar('7');
+				rlutil::setChar('*');
 			}
 			else {
 				continue;

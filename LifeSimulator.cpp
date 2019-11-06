@@ -4,8 +4,8 @@
 //The constructor accepts a sizeXand sizeY indicating the size of the world.
 //You'll want to set these equal to the width/height of the console the program runs within.
 LifeSimulator::LifeSimulator(std::uint8_t sX, std::uint8_t sY) {
-	sizeX = sX+3;
-	sizeY = sY+3;
+	sizeX = sX;
+	sizeY = sY;
 	//fill up your world with dead cells
 	for (size_t i = 0; i < sizeY; i++)
 	{
