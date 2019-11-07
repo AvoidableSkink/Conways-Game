@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/pi/Documents/Conways-Game/Pattern.hpp
+cstdint
+-
+iostream
+-
+vector
+-
+
+/home/pi/Documents/Conways-Game/PatternAcorn.cpp
+PatternAcorn.hpp
+/home/pi/Documents/Conways-Game/PatternAcorn.hpp
+
+/home/pi/Documents/Conways-Game/PatternAcorn.hpp
+Pattern.hpp
+/home/pi/Documents/Conways-Game/Pattern.hpp
+
