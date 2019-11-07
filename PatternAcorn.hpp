@@ -2,21 +2,22 @@
 
 #include "Pattern.hpp"
 
-class PatternAcorn : public Pattern {
+class PatternAcorn : public Pattern
+{
 
-private:
-  void populatePattern();
+  private:
+    void populatePattern();
 
-public:
-  // constructor
-  PatternAcorn();
+  public:
+    // constructor
+    PatternAcorn();
 
-  // Returns the horizontal width(in cells) of the pattern.
-  std::uint8_t getSizeX() const;
+    // Returns the horizontal width(in cells) of the pattern.
+    std::uint8_t getSizeX() const;
 
-  // Returns the vertical height(in cells) of the pattern.
-  std::uint8_t getSizeY() const;
+    // Returns the vertical height(in cells) of the pattern.
+    std::uint8_t getSizeY() const;
 
-  // Returns true if the cell in the pattern is filled, false otherwise.
-  bool getCell(std::uint8_t x, std::uint8_t y) const;
+    // Returns true if the cell in the pattern is filled, false otherwise.
+    bool getCell(std::uint8_t x, std::uint8_t y) const;
 };
